@@ -1,23 +1,73 @@
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
+
   <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+
+			<div class="container">
+				<h2>Pokésir</h2>
+				<div class="row">
+					<div class="cols12">
+						<div ng-controller="pokemonCrawler">
+							<div class="row">
+								<div class="col s4">
+									<label for="filter">Search by user identifier </label>
+									<input name="id" ng-model="pokemon.id" placeholder="Enter pokemon identifier" ng-change="updateSelectSection()" />
+								</div>
+								<div class="col s4">
+									<label for="filter">Search by firstname </label>
+									<input name="filter" ng-model="pokemon.firstname" ng-change="updateSelectSection()" />
+								</div>
+								<div class="col s4">
+									<label for="filter">Select the person </label>
+									<select name="pokemonSelect" id="pokemonSelect" ng-model="pokemon.id" ng-change="updatePokemonSelection(pokemon.id)">
+										<option style="display:none" value="">Select a person</option>
+										<option ng-repeat="pokemon in pokemons | filter:pokemon.firstname | orderBy:'firstname':false" ng-class="{reverse: reverse}" value="{{pokemon.id}}">({{pokemon.id}}) {{pokemon.firstname}} {{pokemon.surname}}</option>
+									</select>
+								</div>
+							</div>
+							<h4>Search results</h4>
+							
+							<p>Here you will see the results of your search</p>
+							<div class="row">
+								<div id="col s3" class="collection-bag" style="display:none">
+									<span>You have selected {{singlePerson.pokemonName}}</span>
+									<ul class="collection">
+										<li class="collection-item avatar">
+											<span class="title">Identifier</span>
+											<p>{{singlePerson.personIdentifier}} <br>
+											</p>
+											<a href="#!" class="secondary-content"></a>
+										</li>
+										<li class="collection-item avatar">
+											<img src="{{singlePerson.pokemonImage}}" alt="" class="circle">
+											<span class="title">Firstname</span>
+											<p>{{singlePerson.personFirstName}} <br>
+											</p>
+											<a href="#!" class="secondary-content"></a>
+										</li>
+										<li class="collection-item avatar">
+											<span class="title">Lastname</span>
+											<p>{{singlePerson.personLastName}} <br>
+											</p>
+											<a href="#!" class="secondary-content"></a>
+										</li>
+										<li class="collection-item avatar">
+											<span class="title">Email</span>
+											<p>{{singlePerson.personEmail}} <br>
+											</p>
+											<a href="#!" class="secondary-content"></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 </div>
 
 <div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
 </div>

@@ -1,1 +1,27 @@
 <p>This is the about view.</p>
+
+<div class="card-panel">
+	<div class="row">
+		<form ng-submit="submit()" ng-controller="ExampleController">
+			<div class="row">
+				<div class="input-field col s6">
+					<input placeholder="Placeholder" ng-model="firstname"  id="firstname" type="text" class="validate" name="firstname">
+					<label for="firstname" class="active">First Name</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="lastname" type="text" ng-model="lastname" class="validate" name="lastname">
+					<label for="lastname">Last Name</label>
+				</div>
+			</div>
+			<input type="text" ng-model="text" name="text" />
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="email" type="email" ng-model="email" class="validate" name="email">
+					<label for="email">Email</label>
+				</div>
+			</div>
+			<button class="btn waves-effect waves-light" ng-click="SendData()">Submit</button>
+			<pre>{{PostDataResponse}}</pre>
+		</form>
+	</div>
+</div>

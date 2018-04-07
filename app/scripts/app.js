@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name gruntApp
+ * @name tp72App
  * @description
- * # gruntApp
+ * # tp72App
  *
  * Main module of the application.
  */
 angular
-  .module('gruntApp', [
+  .module('tp72App', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -21,12 +21,12 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
+        controller: 'pokemonCrawler',
         controllerAs: 'main'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
+        controller: 'ExampleController',
         controllerAs: 'about'
       })
       .otherwise({
