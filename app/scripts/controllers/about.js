@@ -30,12 +30,14 @@ angular.module('tp72App')
 		    .then(function (data, status, headers, config) {
 		                        console.log(data);
 		        $scope.PostDataResponse = data.data.id;
-		    }).catch(function (data, status, header, config) {
+		    })/*
+.catch(function (data, status, header, config) {
 		        $scope.ResponseDetails = "Data: " + data +
 		            "<hr />status: " + status +
 		            "<hr />headers: " + header +
 		            "<hr />config: " + config;
-		    });
+		    })
+*/
 		
 		};
 
