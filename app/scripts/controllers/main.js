@@ -33,14 +33,14 @@ tp7.filter('capitalize', function() {
 });
 
 // Service to implements calls to API
-tp7.service("pokemonService", function($http, JPA){
-    this.pokemonInformation = function(personIdentifier){    
+tp7.service("personService", function($http, JPA){
+    this.personInformation = function(personIdentifier){    
         var myResponseData = $http.get(JPA + '/person/id/' + personIdentifier).then(function (response) {
             return response;
         });
         return myResponseData; 
     };
-    this.getPokemonList = function(){
+    this.getPersonList = function(){
         var myResponseData = $http.get(JPA + "/person").then(function (response) {
             return response.data;
         });
@@ -50,32 +50,33 @@ tp7.service("pokemonService", function($http, JPA){
 
 });
 
-tp7.factory('getPokemon', function($resource, JPA) {
+tp7.factory('getPerson', function($resource, JPA) {
     return $resource(JPA + "/person/id/:id/", {}, {
         get: { method: "GET"}});
 });
 
-tp7.controller("pokemonCrawler", function($scope,$log, $http, $timeout, pokemonMapping, pokemonService) {
+tp7.controller("personCrawler", function($scope,$log, $http, $timeout, personMapping, personService) {
    
-    $scope.pokemons = [];
+    $scope.persons = [];
     $scope.singlePerson = [];
     $scope.$log = $log;
-    pokemonService.getPokemonList().then(function(result) {
-        $scope.pokemons = result;
-        $scope.pokemons.forEach(function(element){
+    personService.getPersonList().then(function(result) {
+        $scope.persons = result;
+        $scope.persons.forEach(function(element){
             element.id = element.identifier;
         });
         $timeout(function () {
             angular.element(document).find('select').material_select();
         }, 500);
     });
-    $scope.searchPok = function(pokemon) {
-        pokemonMapping.addPokemon(pokemon.id);
+    $scope.searchPok = function(person) {
+        personMapping.addPerson(person.id);
     };
-    $scope.updatePokemonSelection = function(selected){
-        pokemonService.pokemonInformation(selected).then(function(response) {
+    $scope.updatePersonSelection = function(selected){
+	    
+        personService.personInformation(selected).then(function(response) {
 
-			$scope.requestedPokemonInformation = response;
+			$scope.requestedPersonInformation = response;
             $scope.singlePerson.personFirstName = response.data[0].firstname;
             $scope.singlePerson.personLastName = response.data[0].surname;            
             $scope.singlePerson.personIdentifier = response.data[0].identifier;
@@ -91,19 +92,19 @@ tp7.controller("pokemonCrawler", function($scope,$log, $http, $timeout, pokemonM
     }
 });
 
-tp7.service("pokemonMapping", function(){
-    this.addPokemon = function(id) {
+tp7.service("personMapping", function(){
+    this.addPerson = function(id) {
         this.id = id;
     };
-    this.getPokemon = function() {
+    this.getPerson = function() {
         return this.id;
     };
 });
 
-tp7.controller("pokemonCrawlerAPI", function($scope,getPokemon,pokemonMapping){
-    console.log(pokemonMapping.getPokemon());
+tp7.controller("personCrawlerAPI", function($scope,getPerson,personMapping){
+    console.log(personMapping.getPerson());
     $scope.getItem = function() {
-        $scope.poke = getPokemon.get({id: pokemonMapping.getPokemon()})
+        $scope.poke = getPerson.get({id: personMapping.getPerson()})
     };
-    $scope.$watch('service.getPokemon()', $scope.getItem);
+    $scope.$watch('service.getPerson()', $scope.getItem);
 });

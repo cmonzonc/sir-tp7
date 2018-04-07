@@ -7,21 +7,21 @@
 				<h2>OPower</h2>
 				<div class="row">
 					<div class="cols12">
-						<div ng-controller="pokemonCrawler">
+						<div ng-controller="personCrawler">
 							<div class="row">
 								<div class="col s4">
 									<label for="filter">Search by user identifier </label>
-									<input name="id" ng-model="pokemon.id" placeholder="Enter pokemon identifier" ng-change="updateSelectSection()" />
+									<input name="id" ng-model="person.id" placeholder="Enter person identifier" ng-change="updateSelectSection()" />
 								</div>
 								<div class="col s4">
 									<label for="filter">Search by firstname </label>
-									<input name="filter" ng-model="pokemon.firstname" ng-change="updateSelectSection()" />
+									<input name="filter" ng-model="person.firstname" ng-change="updateSelectSection()" />
 								</div>
 								<div class="col s4">
 									<label for="filter">Select the person </label>
-									<select name="pokemonSelect" id="pokemonSelect" ng-model="pokemon.id" ng-change="updatePokemonSelection(pokemon.id)">
+									<select name="personSelect" id="personSelect" ng-model="person.id" ng-change="updatePersonSelection(person.id)">
 										<option style="display:none" value="">Select a person</option>
-										<option ng-repeat="pokemon in pokemons | filter:pokemon.firstname | orderBy:'firstname':false" ng-class="{reverse: reverse}" value="{{pokemon.id}}">({{pokemon.id}}) {{pokemon.firstname}} {{pokemon.surname}}</option>
+										<option ng-repeat="person in persons | filter:person.firstname | orderBy:'firstname':false" ng-class="{reverse: reverse}" value="{{person.id}}">({{person.id}}) {{person.firstname}} {{person.surname}}</option>
 									</select>
 								</div>
 							</div>
@@ -30,7 +30,7 @@
 							<p>Here you will see the results of your search</p>
 							<div class="row">
 								<div id="col s3" class="collection-bag" style="display:none">
-									<span>You have selected {{singlePerson.pokemonName}}</span>
+									<span>You have selected {{singlePerson.personName}}</span>
 									<ul class="collection">
 										<li class="collection-item avatar">
 											<span class="title">Identifier</span>

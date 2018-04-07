@@ -21,7 +21,7 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'pokemonCrawler',
+        controller: 'personCrawler',
         controllerAs: 'main'
       })
       .when('/about', {
