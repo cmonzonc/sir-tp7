@@ -1,4 +1,4 @@
-# tp72
+# SIR TP7
 
 Le projet a été généré par [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.16.0.
